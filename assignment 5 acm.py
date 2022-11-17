@@ -22,7 +22,6 @@ strChoice = "" # A Capture the user option selection
 # -- Processing -- #
 # Step 1 - When the program starts, load the any data you have
 # in a text file called ToDoList.txt into a python list of dictionaries rows (like Lab 5-2)
-# TODO: Add Code Here
 objFile = open(objFileName, "r")
 for row in objFile:
     lstRow = row.split(",")
@@ -44,20 +43,20 @@ while True:
     strChoice = str(input("Which option would you like to perform? [1 to 5] - "))
     print()  # adding a new line for looks
     # Step 3 - Show the current items in the table
-    if (strChoice.strip() == '1'):
+    if (strChoice.strip() == '1'): #if the user inputs 1
        print("The items in the ToDoList are: ")
        for row in lstTable:
            print(row["Task"] + "(" + row["Priority"] + ")")
            continue
     # Step 4 - Add a new item to the list/Table
-    elif (strChoice.strip() == '2'):
-        strTask = input("List task here:")
+    elif (strChoice.strip() == '2'): #when the user inputs 2
+        strTask = input("List task here:") #this will determine task in the dictionary, also how to remove in option 3
         strPriority = input("How important is this task (low, medium, or high) ?")
         dicRow = {"Task":strTask, "Priority":strPriority}
         lstTable.append(dicRow)
         continue
     # Step 5 - Remove a new item from the list/Table
-    elif (strChoice.strip() == '3'):
+    elif (strChoice.strip() == '3'): # when the user inputs 3
         if lstTable:
             strRemove = input("Which task would you like to remove?")
         for row in lstTable:
@@ -68,18 +67,17 @@ while True:
                 input("that task doesn't exist, press [enter] to return to the menu")
         continue
     # Step 6 - Save tasks to the ToDoToDoList.txt file
-    elif (strChoice.strip() == '4'):
-        print("The items in the ToDoList are: ")
+    elif (strChoice.strip() == '4'): #when the user inputs 4
+        print("The items in the ToDoList are: ") #this bit of code will resdisplay option 1
         for row in lstTable:
             print(row["Task"] + "(" + row["Priority"] + ")")
-            print(row)
-        objFile = open(objFileName, "w")
+        objFile = open(objFileName, "w") #this will write the data noted in option 1 to the text file
         for dicRow in lstTable:
             objFile.write(dicRow["Task"] + "," + dicRow["Priority"] + "\n")
         objFile.close()
         print("your data has been saved to ToDoList.txt")
         continue
     # Step 7 - Exit program
-    elif (strChoice.strip() == '5'):
+    elif (strChoice.strip() == '5'): # when the user inputs 5
         input("press any key to exit the program!")
         break  # and Exit the program
